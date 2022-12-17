@@ -20,7 +20,7 @@ phases:
       - aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com
       - docker push $ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/ghost-blog:latest
       - echo Deploying to ECS
-      - aws ecs update-service --cluster <cluster name> --service <service name> --force-new-deployment
+      - aws ecs update-service --cluster ghost-blog --service ghost-blog-service --force-new-deployment
 
 
 

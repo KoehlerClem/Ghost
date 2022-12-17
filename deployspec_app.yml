@@ -9,8 +9,11 @@ phases:
 
   build:
     commands:
+      - git 
       - echo build docker image and push to ECR
       - ls -a
+      - git log | head -100
+      - git status
       - pwd
       - docker build -t ghost . 
       - ACCOUNT_ID=`aws sts get-caller-identity --query "Account" --output text`

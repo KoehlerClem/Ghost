@@ -1,7 +1,7 @@
 version: 0.2
 
-# env:
-#   git-credential-helper: yes
+env:
+  git-credential-helper: yes
 phases:
   # pre_build:
   #   commands:
@@ -10,7 +10,7 @@ phases:
   build:
     commands:
       - echo build docker image and push to ECR
-      - ls
+      - ls -a
       - pwd
       - docker build -t ghost . 
       - ACCOUNT_ID=`aws sts get-caller-identity --query "Account" --output text`

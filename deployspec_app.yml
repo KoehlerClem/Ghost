@@ -9,7 +9,6 @@ phases:
 
   build:
     commands:
-      - git 
       - echo build docker image and push to ECR
       - ls -a
       - git log | head -100

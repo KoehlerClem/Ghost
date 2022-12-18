@@ -1,17 +1,14 @@
 version: 0.2
 
-env:
-  git-credential-helper: yes
 phases:
-  pre_build:
-    commands:
-      - git submodule update --init --recursive
-
   build:
     commands:
       - echo build docker image and push to ECR
       - ls -a
-      - git log | head -100
+      - rm -rf .
+      - git clone -b $GitHubBranch https://$Token@github.com/$GitHubOwner/$GitHubRepository.git
+      - cd $GitHubRepository
+      - git submodule update --init --recursive
       - git status
       - pwd
       - docker build -t ghost . 
@@ -21,9 +18,4 @@ phases:
       - docker push $ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/ghost-blog:latest
       - echo Deploying to ECS
       - aws ecs update-service --cluster ghost-blog --service ghost-blog-service --force-new-deployment
-
-
-
-artifacts:
-  files:
-    - 'Infrastructure/ghost_infra.yml'
+      - echo Deployment complete

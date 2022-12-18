@@ -5,7 +5,8 @@ phases:
     commands:
       - echo build docker image and push to ECR
       - ls -a
-      - rm -rf .
+      - mkdir full_clone
+      - cd full_clone
       - git clone -b $GitHubBranch https://$Token@github.com/$GitHubOwner/$GitHubRepository.git
       - cd $GitHubRepository
       - git submodule update --init --recursive

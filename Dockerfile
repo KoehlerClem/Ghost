@@ -6,8 +6,7 @@ COPY . /Ghost
 
 # set the working directory to the ghost folder
 WORKDIR /Ghost
-RUN yarn global add knex-migrator ember-cli
-RUN yarn setup
+RUN yarn install
 RUN yarn build
 
 
